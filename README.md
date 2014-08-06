@@ -1,4 +1,4 @@
 Leetcode
 ========
 
-Solution to Interview Questions Online Judge in Leetcode
+Solution to Interview Questions from Online Judge in Leetcode
