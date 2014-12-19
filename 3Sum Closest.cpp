@@ -5,11 +5,14 @@ public:
         // DO NOT write int main() function
         sort(num.begin(),num.end());
         int delta = 1000000000,ans ;
-        for(int i = 0 ; i < num.size() ; i ++) {
-            for(int j = i + 1 ; j < num.size() - 1; j ++) {
+        int size = num.size();
+        for(int i = 0 ; i <  size; i ++) {
+            vector<int>::iterator last = num.end();
+            for(int j = i + 1 ; j < size - 1; j ++) {
                 int val = target - num[i] - num[j];
-                vector<int>::iterator it = lower_bound(num.begin() + j + 1,num.end(),val);
+                vector<int>::iterator it = lower_bound(num.begin() + j + 1,last,val);
                 if(it != num.end()) {
+                    last = it;
                     if(abs(num[i] + num[j] + *it - target) < delta) {
                         delta = abs(num[i] + num[j] + *it - target);
                         ans = num[i] + num[j] + *it;
