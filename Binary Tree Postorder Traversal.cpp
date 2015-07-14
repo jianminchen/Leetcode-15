@@ -29,7 +29,7 @@ public:
                 }
             }
             else if(prev == cur->right){ // from right
-                ret.push_back(cur->val);; // do nothing
+                ret.push_back(cur->val);
             }
             else{ // from root
                 if(cur->left != NULL){
