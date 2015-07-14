@@ -27,7 +27,7 @@ public:
 		transform(neg.begin(), neg.end(), neg.begin(), [](int v) {return -(v + 1); });
 		RadixSort(neg, 1);
 		reverse(neg.begin(), neg.end());
-		transform(neg.begin(), neg.end(), neg.begin(), [](int v) {return -(v + 1); });
+		transform(neg.begin(), neg.end(), neg.begin(), [](int v) {return (-v) - 1; });
 
 		RadixSort(pos, 1);
 		
