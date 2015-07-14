@@ -9,15 +9,22 @@
  */
 class Solution {
 public:
-    void dfs(TreeNode* root, vector<int>& ret){
-        if(root == NULL) return;
-        ret.push_back(root->val);
-        dfs(root->left, ret);
-        dfs(root->right, ret);
-    }
     vector<int> preorderTraversal(TreeNode* root) {
         vector<int> ret;
-        dfs(root, ret);
+        
+        stack<TreeNode*> stk;
+        stk.push(root);
+        while(!stk.empty())
+        {
+            TreeNode* cur = stk.top();
+            stk.pop();
+            if(cur != NULL)
+            {
+                ret.push_back(cur->val);
+                stk.push(cur->right);
+                stk.push(cur->left);
+            }
+        }
         return ret;
     }
 };
