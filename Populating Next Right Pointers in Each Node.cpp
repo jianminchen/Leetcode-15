@@ -8,33 +8,26 @@
  */
 class Solution {
 public:
-    vector<TreeLinkNode *> traverse(TreeLinkNode *root){
-        vector<TreeLinkNode *> ans;
-        queue<TreeLinkNode *> q;
-        q.push(root);
-        while(!q.empty()){
-            TreeLinkNode * cur = q.front();
-            q.pop();
-            if(cur != NULL)
-            {
-                ans.push_back(cur);
-                q.push(cur->left);
-                q.push(cur->right);
-            }
+    TreeLinkNode *next;
+    bool dfs(TreeLinkNode *root, int height){
+        if(root == NULL) return false;
+        height --;
+        if(height == 0){
+            root->next = next;
+            next = root;
+            return true;
         }
-        return ans;
+        else{
+            dfs(root->right, height);
+            return dfs(root->left, height);
+        }
     }
     void connect(TreeLinkNode *root) {
-        vector<TreeLinkNode *> labels = traverse(root);
-        for(int i = 0, j = 1 ;i < labels.size(); i ++){
-            int vid = i + 1;
-            if(vid == (1 << j) - 1){
-                labels[i]->next = NULL;
-                j ++;
-            }
-            else{
-                labels[i]->next = labels[i + 1];
-            }
-        }
+        int height = 0;
+        do
+        {
+            next = NULL;
+            height ++;
+        }while(dfs(root, height));
     }
 };
